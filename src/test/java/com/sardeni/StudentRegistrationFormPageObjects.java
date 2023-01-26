@@ -7,14 +7,14 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static io.qameta.allure.Allure.step;
+
 public class StudentRegistrationFormPageObjects extends TestBase {
     Faker faker = new Faker();
 
     @Test
     @DisplayName("Проверка заполнения формы регистрации")
     void studentRegistrationFormTest() {
-
-        SelenideLogger.addListener("allure", new AllureSelenide());
 
         String name = faker.name().firstName(),
                 lastName = faker.name().lastName(),
@@ -33,33 +33,40 @@ public class StudentRegistrationFormPageObjects extends TestBase {
                 state = "NCR",
                 city = "Noida";
 
-        registrationPage.openPage()
-                .setFirstName(name)
-                .setLastName(lastName)
-                .setUserEmail(email)
-                .setGender(gender)
-                .setUserPhoneNumber(phoneNumber)
-                .setBirthDate("05", "May", "1987")
-                .setSubject(subject)
-                .setHobbie(hobbieSport)
-                .setHobbie(hobbieRead)
-                .uploadPhoto(pictureSource)
-                .setAddress(currentAddress)
-                .selectState(state)
-                .selectCity(city)
-                .clickSubmitButton();
+        step("open page", () -> {
+            registrationPage.openPage();
+        });
 
-        registrationPage.verifyResultsModalAppears();
-        registrationPage
-                .verifyResult("Student Name", name + " " + lastName)
-                .verifyResult("Student Email", email)
-                .verifyResult("Gender", gender)
-                .verifyResult("Mobile", phoneNumber)
-                .verifyResult("Date of Birth", dateOfBirth)
-                .verifyResult("Address", currentAddress)
-                .verifyResult("Subjects", subject)
-                .verifyResult("Hobbies", hobbies)
-                .verifyResult("Picture", pictureFIleName)
-                .verifyResult("State and City", stateAndCity);
+        step("fill the form", () -> {
+            registrationPage.setFirstName(name)
+                    .setLastName(lastName)
+                    .setUserEmail(email)
+                    .setGender(gender)
+                    .setUserPhoneNumber(phoneNumber)
+                    .setBirthDate("05", "May", "1987")
+                    .setSubject(subject)
+                    .setHobbie(hobbieSport)
+                    .setHobbie(hobbieRead)
+                    .uploadPhoto(pictureSource)
+                    .setAddress(currentAddress)
+                    .selectState(state)
+                    .selectCity(city)
+                    .clickSubmitButton();
+        });
+
+        step("verification added data in the table", () -> {
+            registrationPage.verifyResultsModalAppears();
+            registrationPage
+                    .verifyResult("Student Name", name + " " + lastName)
+                    .verifyResult("Student Email", email)
+                    .verifyResult("Gender", gender)
+                    .verifyResult("Mobile", phoneNumber)
+                    .verifyResult("Date of Birth", dateOfBirth)
+                    .verifyResult("Address", currentAddress)
+                    .verifyResult("Subjects", subject)
+                    .verifyResult("Hobbies", hobbies)
+                    .verifyResult("Picture", pictureFIleName)
+                    .verifyResult("State and City", stateAndCity);
+        } );
     }
 }
