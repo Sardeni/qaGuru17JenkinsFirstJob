@@ -1,15 +1,21 @@
 package com.sardeni;
 
 
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class StudentRegistrationFormPageObjects extends TestBase {
-
     Faker faker = new Faker();
 
     @Test
+    @DisplayName("Проверка заполнения формы регистрации")
     void studentRegistrationFormTest() {
+
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
         String name = faker.name().firstName(),
                 lastName = faker.name().lastName(),
                 email = faker.internet().emailAddress(),
