@@ -2,6 +2,7 @@ package com.sardeni;
 
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -10,6 +11,7 @@ public class StudentRegistrationFormPageObjects extends TestBase {
     Faker faker = new Faker();
 
     @Test
+    @Tag("smoke")
     @DisplayName("Проверка заполнения формы регистрации")
     void studentRegistrationFormTest() {
 
