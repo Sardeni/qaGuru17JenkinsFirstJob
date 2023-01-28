@@ -62,7 +62,7 @@ task smoke_tests(type: Test) {
     }
 }
 
-task one_property_test(type: Test) {
+task regress(type: Test) {
     useJUnitPlatform {
         includeTags("regress")
     }
