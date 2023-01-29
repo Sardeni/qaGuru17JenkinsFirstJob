@@ -1,11 +1,11 @@
 {
   "base": {
-    "logo": "",
-    "project": "Notifications project QA GURU 17",
+    "project": "${JOB_BASE_NAME}",
     "environment": "some env",
     "comment": "some comment",
-    "reportLink": "",
-    "language": "ru",
+    "reportLink": "${BUILD_URL}",
+    "language": "en",
+    "messenger": "telegram",
     "allureFolder": "build/allure-report/",
     "enableChart": true
   },
