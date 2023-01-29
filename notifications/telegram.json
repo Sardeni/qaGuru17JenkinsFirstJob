@@ -1,0 +1,17 @@
+{
+  "base": {
+    "logo": "",
+    "project": "Notifications project QA GURU 17",
+    "environment": "some env",
+    "comment": "some comment",
+    "reportLink": "",
+    "language": "ru",
+    "allureFolder": "build/allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "5765791242:AAGdAr5T9tV8sOmtOcMmsT_Y611-4PgdtHI",
+    "chat": "-1001878068493",
+    "replyTo": ""
+  }
+}
